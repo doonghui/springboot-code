@@ -69,14 +69,17 @@ public class ItemController {
     public String updateItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") BookForm form){
         Book book = new Book();
 
-        book.setId(form.getId());       // 이 아이디에 대해서 취약점이 많아서 서비스에서 이 아이디가 아이템에 관한 권한이 있는지 없는지 로직이 필요하다..
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
+//        book.setId(form.getId());       // 이 아이디에 대해서 취약점이 많아서 서비스에서 이 아이디가 아이템에 관한 권한이 있는지 없는지 로직이 필요하다..
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+//        itemService.saveItem(book);
 
-        itemService.saveItem(book);
+        itemService.updateItem(itemId,form.getName(), form.getPrice(), form.getStockQuantity());
+
+
 
         return "redirect:/items";
     }
