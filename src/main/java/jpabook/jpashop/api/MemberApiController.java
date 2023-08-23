@@ -20,13 +20,14 @@ public class MemberApiController {
     private final MemberService memberService;
 
 
+//
+//    @GetMapping("/api/v1/members")        // 위험!
+//    public List<Member> membersV1() {
+//        return memberService.findMembers();
+//    }
 
-    @GetMapping("/api/v1/members")
-    public List<Member> membersV1() {
-        return memberService.findMembers();
-    }
 
-
+    // 멤버 조회
     @GetMapping("/api/v2/members")
     public Result membersV2() {
         List<Member> findMembers =memberService.findMembers();
@@ -38,13 +39,13 @@ public class MemberApiController {
     }
 
 
-    @PostMapping("/api/v1/members")
-    public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member) {
-        Long id = memberService.join(member);
-        return new CreateMemberResponse(id);
-
-    }
-
+//    @PostMapping("/api/v1/members")       // 위험!
+//    public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member) {
+//        Long id = memberService.join(member);
+//        return new CreateMemberResponse(id);
+//
+//    }
+    // 멤버 생성
     @PostMapping("/api/v2/members")
     public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
         Member member = new Member();
@@ -54,7 +55,7 @@ public class MemberApiController {
 
         return new CreateMemberResponse(id);
     }
-
+    // 멤버 수정
     @PutMapping("/api/v2/members/{id}")
     public UpdateMemberResponse updateMemberResponse(@PathVariable("id") Long id,@RequestBody @Valid UpdateMemberRequest request ){
 
