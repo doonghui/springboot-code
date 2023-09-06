@@ -26,6 +26,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/new")
+//    @ApiOperation(value="시험11222", notes="시험입ㄴ디ㅏ..")
     public String create(@Valid MemberForm form, BindingResult result){     // @Valid 를 통해서 form 에 있는 스프링이 관련된 에너테이션(ex) @NotEmpty) 를 쓰는구나를 알 수 있다.
 
         // BindingResult result 이게 있으면 오류가 생길때 이 코드로 담겨서 실행을 할 수 있게 해준다.

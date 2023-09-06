@@ -8,7 +8,6 @@ import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +32,11 @@ public class OrderSimpleApiController {
     @GetMapping("/api/v1/simple-orders")        // 양방향 연관관계가 생긴다. Order <--> Member
     public List<Order> orderV1() {
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
+
+        for (Order order : all) {        // LAZY 강제 초기화
+            order.getMember().getName();
+            order.getDelivery().getOrder();
+        }
         return all;
     }
 
@@ -59,15 +63,15 @@ public class OrderSimpleApiController {
     }
 
 
-    @GetMapping("/api/v4/simple-orders")        // fetch join 활용
-    public List<SimpleOrderDto> orderV4() {
-        List<Order> orders =orderRepository.findOrderDtos();
-        List<SimpleOrderDto> result = orders.stream()
-                .map(o -> new SimpleOrderDto(o))
-                .collect(Collectors.toList());
-
-        return result;
-    }
+//    @GetMapping("/api/v4/simple-orders")        // fetch join 활용
+//    public List<SimpleOrderDto> orderV4() {
+//        List<Order> orders =orderRepository.findOrderDtos();
+//        List<SimpleOrderDto> result = orders.stream()
+//                .map(o -> new SimpleOrderDto(o))
+//                .collect(Collectors.toList());
+//
+//        return result;
+//    }
 
 
 
