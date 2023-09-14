@@ -19,11 +19,11 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/members/new")
-    public String createForm(Model model) {
-        model.addAttribute("memberForm",new MemberForm());          // 빈 객체를 만드는 이유는 뭔가 검증이나.. 그런걸 해준다.
-        return "members/createMemberForm";
-    }
+//    @GetMapping("/members/new")
+//    public String createForm(Model model) {
+//        model.addAttribute("memberForm",new MemberForm());          // 빈 객체를 만드는 이유는 뭔가 검증이나.. 그런걸 해준다.
+//        return "members/createMemberForm";
+//    }
 
     @PostMapping("/members/new")
 //    @ApiOperation(value="시험11222", notes="시험입ㄴ디ㅏ..")
